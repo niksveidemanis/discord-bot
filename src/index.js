@@ -13,6 +13,8 @@ const client = new Client({
     ],
 });
 
+let count = 37
+
 client.on('ready', (c) => {
     console.log(`${c.user.tag} is online!`);
 });
@@ -37,6 +39,18 @@ client.on('interactionCreate', (Interaction) => {
             );
 
         Interaction.reply({ embeds: [embed] })
+    }
+});
+client.on('messageCreate', ({channel, content, member, message}) => {
+    if(member.user.bot) return;
+
+    if(channel.id === process.env.COUNTING_CHANNEL){
+        if(Number(content) === count + 1){
+            count++;
+        } else {
+            channel.bulkDelete(1);
+        }
+        
     }
 });
 

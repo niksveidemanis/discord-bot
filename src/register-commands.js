@@ -6,9 +6,6 @@ const commands = [
         name: 'userinfo',
         description: 'Shows user info!',
     },
-            
-        
-    
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
